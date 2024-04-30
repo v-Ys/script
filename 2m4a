@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Check parameters
+if [ $# -ne 1 ]; then
+    printf "\033[0;31mUsage: $0 <input>\033[0m"
+    exit 1
+fi
+
+if ! command -v ffmpeg > /dev/null; then
+    printf "\033[0;31mffmpeg not found!\033[0m"
+    exit 1
+fi
+
+input="$1"
+output="${input%.*}.m4a"
+
+ffmpeg -i "$input" -vn -acodec copy "$output"
+
+# $? saves the exit status of the previous command. 0 means success, and non-0 means error.
+if [ $? -eq 0 ]; then
+    printf "\033[0;32mConversion completed successfully\033[0m"
+else
+    printf "\033[0;31mConversion failed\033[0m"
+    exit 1
+fi
