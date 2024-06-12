@@ -13,7 +13,7 @@ chmod +x 2m4a # sh ./2m4a
 ```
 
 # wxyy
-[source code](./wxyy)
+[source code](./wxyy.py)
 - dependencies
 
 python
